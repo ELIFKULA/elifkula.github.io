@@ -1,0 +1,24 @@
+# Site settings
+title: ELIFKULA
+description: Kış Düşleri - Bir Kış Blogu
+baseurl: ""
+url: ""
+
+# Build settings
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
+# Encoding
+encoding: utf-8
+
+# Turkish timezone
+timezone: Europe/Istanbul
+
+# Exclude from build
+exclude:
+  - design.md
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+url: "https://ELIFKULA.github.io"
+baseurl: ""

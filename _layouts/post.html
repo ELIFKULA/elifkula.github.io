@@ -1,0 +1,76 @@
+---
+layout: default
+---
+<header class="site-header">
+    <a href="{{ '/' | relative_url }}" class="site-title">ELIFKULA</a>
+</header>
+
+<article class="post">
+    <header class="post-header">
+        <time class="post-date" datetime="{{ page.date | date: '%Y-%m-%d' }}">
+            {% assign day = page.date | date: "%-d" %}
+            {% assign month = page.date | date: "%-m" %}
+            {% assign year = page.date | date: "%Y" %}
+            {% case month %}
+            {% when '1' %}{% assign month_name = "Ocak" %}
+            {% when '2' %}{% assign month_name = "Şubat" %}
+            {% when '3' %}{% assign month_name = "Mart" %}
+            {% when '4' %}{% assign month_name = "Nisan" %}
+            {% when '5' %}{% assign month_name = "Mayıs" %}
+            {% when '6' %}{% assign month_name = "Haziran" %}
+            {% when '7' %}{% assign month_name = "Temmuz" %}
+            {% when '8' %}{% assign month_name = "Ağustos" %}
+            {% when '9' %}{% assign month_name = "Eylül" %}
+            {% when '10' %}{% assign month_name = "Ekim" %}
+            {% when '11' %}{% assign month_name = "Kasım" %}
+            {% when '12' %}{% assign month_name = "Aralık" %}
+            {% endcase %}
+            {{ day }} {{ month_name }} {{ year }}
+        </time>
+        <h1 class="post-title">{{ page.title }}</h1>
+    </header>
+
+    <div class="post-content">
+        {{ content }}
+    </div>
+
+    <footer class="post-footer">
+        <a href="{{ '/' | relative_url }}" class="back-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            </svg>
+            Ana Sayfa
+        </a>
+
+        <!-- AddToAny BEGIN -->
+        <div style="display: flex; flex-direction: column; align-items: flex-end; margin-top: 20px;">
+            <span class="share-prompt" style="margin-bottom: 8px;">Paylaş ❄️</span>
+            <div class="a2a_kit a2a_kit_size_32 a2a_default_style" style="display: flex; gap: 4px;">
+                <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                <a class="a2a_button_facebook"></a>
+                <a class="a2a_button_twitter"></a>
+                <a class="a2a_button_whatsapp"></a>
+                <a class="a2a_button_telegram"></a>
+                <a class="a2a_button_copy_link"></a>
+            </div>
+            <script async src="https://static.addtoany.com/menu/page.js"></script>
+        </div>
+        <!-- AddToAny END -->
+    </footer>
+
+    <div class="post-navigation">
+        <div class="nav-previous">
+            {% if page.previous.url %}
+            <span class="nav-label">Önceki Yazı</span>
+            <a href="{{ page.previous.url | relative_url }}" class="nav-title">« {{ page.previous.title }}</a>
+            {% endif %}
+        </div>
+        <div class="nav-next">
+            {% if page.next.url %}
+            <span class="nav-label">Sonraki Yazı</span>
+            <a href="{{ page.next.url | relative_url }}" class="nav-title">{{ page.next.title }} »</a>
+            {% endif %}
+        </div>
+    </div>
+</article>

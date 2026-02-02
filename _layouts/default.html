@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | truncatewords: 30 }}">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <link rel="icon" type="image/png" href="{{ '/assets/favicon.png' | relative_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+    <script src="{{ '/assets/theme.js' | relative_url }}"></script>
+    <!-- Google Analytics -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T2YK52PF4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-9T2YK52PF4');
+    </script>
+
+<body>
+    <canvas id="snow-canvas"></canvas>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="{{ '/' | relative_url }}" class="nav-logo">ELIFKULA</a>
+            <button class="mobile-menu-toggle" aria-label="Menüyü Aç">❄</button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">Ana
+                        Sayfa</a></li>
+                <li><a href="{{ '/hakkimda/' | relative_url }}"
+                        class="nav-link {% if page.url == '/hakkimda/' %}active{% endif %}">Hakkımda</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        {{ content }}
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <p class="footer-quote">Made with 🤍 by Rüzgar Erik</p>
+            <p class="footer-copy">© {{ site.time | date: '%Y' }} Elif Naciye Kula. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="{{ '/assets/snow.js' | relative_url }}"></script>
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+
+</html>
