@@ -1,8 +1,6 @@
 # Site settings
 title: ELIFKULA
-description: ""
-baseurl: ""
-url: ""
+description:
 
 # Build settings
 markdown: kramdown
@@ -20,5 +18,6 @@ exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
-url: "https://ELIFKULA.github.io"
+
+url: "https://elifnkula.com.tr"
 baseurl: ""
