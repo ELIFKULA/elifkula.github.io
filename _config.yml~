@@ -1,6 +1,9 @@
 :# Site settings
 title: ELIFKULA
-description: 
+description: Kış Düşleri - Bir Kış Blogu
+baseurl: ""
+url: ""
+
 # Build settings
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
