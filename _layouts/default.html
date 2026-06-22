@@ -47,8 +47,8 @@
 
     <footer class="site-footer">
         <div class="footer-container">
-            <p class="footer-quote">Made with 🤍 by Rüzgar Erik</p>
-            <p class="footer-copy">© {{ site.time | date: '%Y' }} Elif Naciye Kula. Tüm hakları saklıdır.</p>
+	    <p class="footer-copy" id="email-link">Email is loading...</p>
+            <p class="footer-quote">© {{ site.time | date: '%Y' }} Elif Naciye Kula. Tüm hakları saklıdır.</p>
         </div>
     </footer>
 
@@ -65,6 +65,26 @@
             });
         }
     </script>
+    
+	<script>
+	  (function() {
+	    // 1. Paste the generated string here:
+	    const scrambled = "==wRFlEBGN0SH1kaeskRfFETDZ0T"; 
+	    const key = 42; // Must match the key used to encrypt
+
+	    // 2. Reverse and decode Base64
+	    const rawXor = atob(scrambled.split('').reverse().join(''));
+
+	    // 3. Decrypt the XOR chain
+	    const decrypted = rawXor.split('').map(char => 
+	      String.fromCharCode(char.charCodeAt(0) ^ key)
+	    ).join('');
+
+	    // 4. Inject into HTML
+	    const element = document.getElementById('email-link');
+	    element.innerHTML = `<a href="mailto:${decrypted}" style="color: inherit; text-decoration: none;">${decrypted}</a>`;
+	  })();
+	</script>
 </body>
 
 </html>
