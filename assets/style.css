@@ -907,22 +907,46 @@ button:focus-visible {
 /* Mobile Menu Toggle Button (Hidden on Desktop) */
 .mobile-menu-toggle {
     display: none;
-    background: none;
-    border: none;
-    font-size: 2rem;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    background: rgba(15, 23, 41, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50px;
+    font: 600 1rem var(--font-body);
     color: var(--color-text-light);
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.5rem 0.85rem;
     line-height: 1;
-    transition: var(--transition-med);
-    text-shadow: 0 0 10px rgba(100, 181, 246, 0.5);
     z-index: 101;
 }
 
 .mobile-menu-toggle:hover,
-.mobile-menu-toggle.active {
-    transform: rotate(180deg) scale(1.1);
+.mobile-menu-toggle[aria-expanded="true"] {
+    border-color: var(--color-accent-primary);
     color: var(--color-accent-primary);
+}
+
+.mobile-menu-toggle:focus-visible {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: 3px;
+}
+
+.mobile-menu-icon {
+    font-size: 1.35rem;
+    color: var(--color-accent-primary);
+}
+
+.mobile-menu-chevron {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    transform: translateY(-1px) rotate(45deg);
+}
+
+.mobile-menu-toggle[aria-expanded="true"] .mobile-menu-chevron {
+    transform: translateY(1px) rotate(225deg);
 }
 
 @media (max-width: 768px) {
@@ -957,8 +981,7 @@ button:focus-visible {
     }
 
     .mobile-menu-toggle {
-        display: block;
-        /* Show snowflake */
+        display: inline-flex;
     }
 
     /* Dropdown/Fold-out Menu */

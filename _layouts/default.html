@@ -31,7 +31,11 @@
     <nav class="main-nav">
         <div class="nav-container">
             <a href="{{ '/' | relative_url }}" class="nav-logo">ELIFKULA</a>
-            <button class="mobile-menu-toggle" aria-label="Menüyü Aç">❄</button>
+            <button class="mobile-menu-toggle" type="button" aria-controls="nav-menu" aria-expanded="false">
+                <span class="mobile-menu-icon" aria-hidden="true">❄</span>
+                Menü
+                <span class="mobile-menu-chevron" aria-hidden="true"></span>
+            </button>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">Ana
                         Sayfa</a></li>
@@ -63,8 +67,16 @@
 
         if (menuToggle && navMenu) {
             menuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                menuToggle.classList.toggle('active');
+                const expanded = navMenu.classList.toggle('active');
+                menuToggle.setAttribute('aria-expanded', String(expanded));
+            });
+
+            menuToggle.closest('nav').addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+                    navMenu.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.focus();
+                }
             });
         }
     </script>
