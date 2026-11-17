@@ -1,0 +1,92 @@
+media:
+  input: assets
+  output: /assets
+  categories: [image]
+
+content:
+  - name: posts
+    label: Yazılar
+    type: collection
+    path: _posts
+    format: yaml-frontmatter
+    subfolders: false
+    filename:
+      template: "{year}-{month}-{day}-{primary}.md"
+      field: create
+    view:
+      fields: [title, date]
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: layout
+        type: string
+        hidden: true
+        default: post
+      - name: title
+        label: Başlık
+        type: string
+        required: true
+      - name: date
+        label: Tarih
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: body
+        label: İçerik
+        type: rich-text
+
+  - name: gunlukler
+    label: Günlükler
+    type: collection
+    path: _gunlukler
+    format: yaml-frontmatter
+    subfolders: false
+    exclude: [README.md]
+    filename:
+      template: "{year}-{month}-{day}-{primary}.md"
+      field: create
+    view:
+      fields: [title, date]
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Başlık
+        type: string
+        required: true
+      - name: date
+        label: Tarih
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: body
+        label: İçerik
+        type: rich-text
+
+  - name: hakkimda
+    label: Hakkımda
+    type: file
+    path: hakkimda.md
+    format: yaml-frontmatter
+    fields:
+      - name: layout
+        type: string
+        hidden: true
+      - name: title
+        label: Başlık
+        type: string
+        readonly: true
+      - name: permalink
+        type: string
+        hidden: true
+      - name: body
+        label: İçerik
+        type: code
+        options:
+          format: html
