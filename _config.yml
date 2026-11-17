@@ -6,6 +6,18 @@ description:
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
 
+collections:
+  gunlukler:
+    output: true
+    permalink: /gunlukler/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: gunlukler
+    values:
+      layout: post
+
 # Encoding
 encoding: utf-8
 

@@ -1,0 +1,19 @@
+---
+layout: default
+title: Günlükler
+---
+
+<header class="site-header">
+    <h1 class="site-title">Günlükler</h1>
+</header>
+
+<main>
+    {% assign entries = site.gunlukler | sort: 'date' | reverse %}
+    {% if entries.size > 0 %}
+    {% include post-list.html posts=entries %}
+    {% else %}
+    <div class="empty-state">
+        <p>Henüz günlük yazısı yok.</p>
+    </div>
+    {% endif %}
+</main>

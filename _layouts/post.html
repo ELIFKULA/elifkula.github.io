@@ -35,12 +35,18 @@ layout: default
     </div>
 
     <footer class="post-footer">
-        <a href="{{ '/' | relative_url }}" class="back-link">
+        {% assign back_url = '/' %}
+        {% assign back_label = 'Ana Sayfa' %}
+        {% if page.collection == 'gunlukler' %}
+            {% assign back_url = '/gunlukler/' %}
+            {% assign back_label = 'Günlükler' %}
+        {% endif %}
+        <a href="{{ back_url | relative_url }}" class="back-link">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                 stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
             </svg>
-            Ana Sayfa
+            {{ back_label }}
         </a>
 
         <!-- AddToAny BEGIN -->
