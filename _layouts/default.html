@@ -28,13 +28,12 @@
 <body>
     <canvas id="snow-canvas"></canvas>
 
-    <nav class="main-nav">
+    <nav class="main-nav" aria-label="Ana gezinme">
         <div class="nav-container">
             <a href="{{ '/' | relative_url }}" class="nav-logo">ELIFKULA</a>
-            <button class="mobile-menu-toggle" type="button" aria-controls="nav-menu" aria-expanded="false">
-                <span class="mobile-menu-icon" aria-hidden="true">❄</span>
+            <button class="mobile-menu-toggle" type="button" aria-controls="nav-menu" aria-expanded="false" hidden>
                 Menü
-                <span class="mobile-menu-chevron" aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
             </button>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">Ana
@@ -61,24 +60,22 @@
 
     <script src="{{ '/assets/snow.js' | relative_url }}"></script>
     <script>
-        // Mobile Menu Toggle
         const menuToggle = document.querySelector('.mobile-menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
+        const navigation = menuToggle.closest('nav');
 
-        if (menuToggle && navMenu) {
-            menuToggle.addEventListener('click', () => {
-                const expanded = navMenu.classList.toggle('active');
-                menuToggle.setAttribute('aria-expanded', String(expanded));
-            });
+        menuToggle.hidden = false;
 
-            menuToggle.closest('nav').addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
-                    navMenu.classList.remove('active');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    menuToggle.focus();
-                }
-            });
-        }
+        menuToggle.addEventListener('click', () => {
+            const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        navigation.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && menuToggle.offsetWidth && menuToggle.getAttribute('aria-expanded') === 'true') {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.focus();
+            }
+        });
     </script>
     
 	<script>

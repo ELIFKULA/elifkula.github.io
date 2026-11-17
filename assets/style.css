@@ -875,158 +875,99 @@ button:focus-visible {
     }
 }
 
-/* Mobile Navigation Fix */
+.mobile-menu-toggle {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .main-nav {
-        position: relative;
-        /* Push content down so it doesn't overlap */
-        padding: var(--spacing-sm) 0;
-        text-align: center;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        background: var(--color-bg-dark);
+        border-bottom: 1px solid var(--color-glass-border);
     }
 
     .nav-container {
-        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-logo {
+        opacity: 1;
+        font-size: 1rem;
+        letter-spacing: 0.06em;
+    }
+
+    .mobile-menu-toggle:not([hidden]) {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        min-height: 44px;
+        padding: 0 0.75rem;
+        color: var(--color-text-light);
+        background: transparent;
+        border: 1px solid var(--color-glass-border);
+        border-radius: var(--radius-sm);
+        font: 600 1rem var(--font-body);
+        cursor: pointer;
+    }
+
+    .mobile-menu-toggle span {
+        width: 0.45rem;
+        height: 0.45rem;
+        border-right: 1px solid;
+        border-bottom: 1px solid;
+        transform: translateY(-2px) rotate(45deg);
+    }
+
+    .mobile-menu-toggle[aria-expanded="true"] span {
+        transform: translateY(2px) rotate(225deg);
+    }
+
+    .mobile-menu-toggle:not([hidden])[aria-expanded="false"] + .nav-menu {
+        display: none;
     }
 
     .nav-menu {
-        background: rgba(15, 23, 41, 0.8);
-        /* More opaque on mobile */
-        padding: 0.4rem 1.2rem;
+        flex: 0 0 100%;
+        flex-direction: column;
+        gap: 0.25rem;
+        margin-top: var(--spacing-xs);
+        padding: var(--spacing-xs) 0 0;
+        background: transparent;
+        backdrop-filter: none;
+        border: 0;
+        border-top: 1px solid var(--color-glass-border);
+        border-radius: 0;
     }
 
-    /* Ensure title has enough space */
+    .nav-link {
+        display: flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0 0.75rem;
+        border-radius: var(--radius-sm);
+    }
+
+    .nav-link.active {
+        background: var(--color-glass);
+    }
+
+    .mobile-menu-toggle:focus-visible,
+    .nav-link:focus-visible {
+        outline: 2px solid var(--color-accent-primary);
+        outline-offset: -2px;
+    }
+
     .site-header {
         margin-top: var(--spacing-sm);
     }
-}
 
-/* =========================================
-   Mobile Menu & Responsive Title Fixes
-   ========================================= */
-
-/* Mobile Menu Toggle Button (Hidden on Desktop) */
-.mobile-menu-toggle {
-    display: none;
-    align-items: center;
-    gap: 0.5rem;
-    min-height: 44px;
-    background: rgba(15, 23, 41, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: 50px;
-    font: 600 1rem var(--font-body);
-    color: var(--color-text-light);
-    cursor: pointer;
-    padding: 0.5rem 0.85rem;
-    line-height: 1;
-    z-index: 101;
-}
-
-.mobile-menu-toggle:hover,
-.mobile-menu-toggle[aria-expanded="true"] {
-    border-color: var(--color-accent-primary);
-    color: var(--color-accent-primary);
-}
-
-.mobile-menu-toggle:focus-visible {
-    outline: 2px solid var(--color-accent-primary);
-    outline-offset: 3px;
-}
-
-.mobile-menu-icon {
-    font-size: 1.35rem;
-    color: var(--color-accent-primary);
-}
-
-.mobile-menu-chevron {
-    width: 0.4rem;
-    height: 0.4rem;
-    border-right: 2px solid;
-    border-bottom: 2px solid;
-    transform: translateY(-1px) rotate(45deg);
-}
-
-.mobile-menu-toggle[aria-expanded="true"] .mobile-menu-chevron {
-    transform: translateY(1px) rotate(225deg);
-}
-
-@media (max-width: 768px) {
-
-    /* Larger Title on Mobile */
     .site-title {
         font-size: 3.5rem !important;
-        /* Force larger size */
         line-height: 1.1;
     }
 
     .site-tagline {
         font-size: 1.1rem;
-    }
-
-    /* Mobile Navigation Layout */
-    .main-nav {
-        display: flex;
-        justify-content: flex-end;
-        /* Push snowflake to right */
-        padding: var(--spacing-sm) var(--spacing-md);
-    }
-
-    .nav-container {
-        width: auto;
-        margin: 0;
-    }
-
-    .nav-logo {
-        display: none !important;
-        /* Hide small logo text */
-    }
-
-    .mobile-menu-toggle {
-        display: inline-flex;
-    }
-
-    /* Dropdown/Fold-out Menu */
-    .nav-menu {
-        position: absolute;
-        top: 100%;
-        right: var(--spacing-md);
-        flex-direction: column;
-        background: rgba(15, 23, 41, 0.95);
-        backdrop-filter: blur(15px);
-        padding: var(--spacing-md);
-        border-radius: var(--radius-lg);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-
-        /* Animation State: Hidden */
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 100;
-        min-width: 200px;
-    }
-
-    /* Animation State: Visible */
-    .nav-menu.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
-
-    .nav-menu li {
-        width: 100%;
-        text-align: right;
-    }
-
-    .nav-link {
-        display: block;
-        padding: var(--spacing-sm) 0;
-        font-size: 1.2rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .nav-link:last-child {
-        border-bottom: none;
     }
 }
 
